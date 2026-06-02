@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cronograma Mundialista Miami</title>
+    <meta
+      name="description"
+      content="Cronograma interactivo del viaje a Miami: calendario, agenda diaria, comidas y recomendaciones."
+    />
+    <link rel="preload" href="assets/hero-world-cup-trip.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="inicio">
+      <div class="hero__image" aria-hidden="true"></div>
+      <nav class="topbar" aria-label="Navegacion principal">
+        <a class="brand" href="#inicio">
+          <span class="brand__mark">WC</span>
+          <span>Miami 2026</span>
+        </a>
+        <div class="topbar__links">
+          <a href="#tablero">Hoy</a>
+          <a href="#calendario">Calendario</a>
+          <a href="#cronograma">Cronograma</a>
+          <a href="#comidas">Comidas</a>
+          <a href="#sectores">Sector</a>
+        </div>
+      </nav>
+
+      <section class="hero__content">
+        <p class="kicker">22 de junio - 2 de julio de 2026</p>
+        <h1>Cronograma Mundialista Miami</h1>
+        <p>
+          Abre el viaje y entiende al instante que toca: calendario, ruta del
+          dia, comidas cerca del sector y recomendaciones para moverse con
+          menos friccion.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#tablero">Ver tablero</a>
+          <a class="button button--secondary" href="#cronograma">Ir a la agenda</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="stats" aria-label="Resumen del viaje">
+        <div class="stats__inner" id="stats"></div>
+      </section>
+
+      <section class="command-center" id="tablero">
+        <article class="today-card" id="todayPanel"></article>
+        <article class="calendar-card" id="calendario">
+          <div class="section-title">
+            <p class="kicker">Calendario</p>
+            <h2>Vista completa del viaje</h2>
+          </div>
+          <div class="calendar-legend" aria-label="Leyenda del calendario">
+            <span><strong>✈</strong> Vuelo</span>
+            <span><strong>🌴</strong> Playa / ruta</span>
+            <span><strong>🔥</strong> Partido</span>
+            <span><strong>🛍</strong> Compras</span>
+            <span><strong>★</strong> Especial</span>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </article>
+      </section>
+
+      <section class="layout" id="cronograma">
+        <aside class="sidebar" aria-label="Dias del viaje">
+          <div class="section-title">
+            <p class="kicker">Dias</p>
+            <h2>Ruta completa</h2>
+          </div>
+          <div class="day-list" id="dayList" role="tablist"></div>
+        </aside>
+
+        <section class="schedule" aria-label="Detalle del dia seleccionado">
+          <div class="day-summary" id="daySummary"></div>
+          <div class="schedule__head">
+            <div>
+              <p class="kicker">Dia seleccionado</p>
+              <h2 id="selectedDayTitle">Dia seleccionado</h2>
+            </div>
+            <div class="day-controls">
+              <button class="icon-button" id="prevDay" aria-label="Dia anterior">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+              <button class="icon-button" id="nextDay" aria-label="Dia siguiente">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="view-tabs" id="viewTabs" role="tablist" aria-label="Vista del dia"></div>
+          <div class="segmented" id="planFilters" aria-label="Filtros de tipo de plan"></div>
+          <div class="detail-view" id="detailView"></div>
+        </section>
+      </section>
+
+      <section class="food-section" id="comidas">
+        <div class="section-title section-title--wide">
+          <p class="kicker">Amarrado al dia</p>
+          <h2>Comidas del dia seleccionado</h2>
+        </div>
+        <div class="food-board" id="foodBoard"></div>
+      </section>
+
+      <section class="sector-section" id="sectores">
+        <div class="section-title section-title--wide">
+          <p class="kicker">Contexto del dia</p>
+          <h2>Sector y ruta del dia seleccionado</h2>
+        </div>
+        <div class="sector-grid" id="sectorGrid"></div>
+      </section>
+    </main>
+
+    <dialog class="modal" id="detailModal" aria-labelledby="detailTitle">
+      <button class="icon-button modal__close" id="closeModal" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <div id="modalContent"></div>
+    </dialog>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
