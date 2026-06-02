@@ -121,7 +121,6 @@
     filters: document.querySelector("#planFilters"),
     detailView: document.querySelector("#detailView"),
     foodBoard: document.querySelector("#foodBoard"),
-    sectorGrid: document.querySelector("#sectorGrid"),
     modal: document.querySelector("#detailModal"),
     modalContent: document.querySelector("#modalContent"),
     closeModal: document.querySelector("#closeModal")
@@ -441,6 +440,17 @@
     const day = selectedDay();
     const food = day.food[0];
     const media = dayMedia[day.id];
+    const miniRoute = day.plans
+      .slice(0, 4)
+      .map(
+        (plan) => `
+          <li>
+            <time>${plan.time}</time>
+            <span>${plan.title}</span>
+          </li>
+        `
+      )
+      .join("");
     el.daySummary.innerHTML = `
       <div>
         <p class="kicker">${dateLabel(day.dateObj)}</p>
@@ -466,6 +476,10 @@
         <span><strong>${day.sector}</strong>Sector</span>
         <span><strong>${day.tempo}</strong>Ritmo</span>
         <span><strong>${food ? food.recommendation.split(".")[0] : "Por definir"}</strong>Comida sugerida</span>
+        <div class="mini-day-route">
+          <p class="kicker">Ruta rapida</p>
+          <ul>${miniRoute}</ul>
+        </div>
       </div>
     `;
   }
@@ -697,50 +711,6 @@
     `;
   }
 
-  function renderSectors() {
-    const day = selectedDay();
-    const previous = enrichedDays[day.index - 1];
-    const next = enrichedDays[day.index + 1];
-    const route = day.plans
-      .map(
-        (plan) => `
-          <li>
-            <time>${plan.time}</time>
-            <div>
-              <strong>${plan.place}</strong>
-              <span>${plan.title}</span>
-            </div>
-          </li>
-        `
-      )
-      .join("");
-
-    el.sectorGrid.innerHTML = `
-      <article class="sector-card sector-card--focused">
-        <span>${day.date}</span>
-        <h3>${day.sector}</h3>
-        <p>${day.summary}</p>
-        <div class="meta">
-          <span>${day.base}</span>
-          <span>${day.tempo}</span>
-          <span>${day.plans.length} bloques</span>
-        </div>
-        <div class="route-panel">
-          <p class="kicker">Ruta del dia</p>
-          <ul>${route}</ul>
-        </div>
-        <div class="neighbor-days">
-          ${previous ? `<button class="small-button" data-sector-day="${previous.id}">Anterior: ${previous.date}</button>` : ""}
-          ${next ? `<button class="small-button" data-sector-day="${next.id}">Siguiente: ${next.date}</button>` : ""}
-        </div>
-      </article>
-    `;
-
-    el.sectorGrid.querySelectorAll("[data-sector-day]").forEach((button) => {
-      button.addEventListener("click", () => selectDay(button.dataset.sectorDay, { scroll: true }));
-    });
-  }
-
   function openDetail(item, day) {
     el.modalContent.innerHTML = `
       <div class="modal__body">
@@ -781,7 +751,6 @@
     renderViewTabs();
     renderDetailView();
     renderFoodBoard();
-    renderSectors();
   }
 
   el.prevDay.addEventListener("click", () => moveDay(-1));

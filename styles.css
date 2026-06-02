@@ -71,8 +71,7 @@ button {
 .stats__inner,
 .command-center,
 .layout,
-.food-section,
-.sector-section {
+.food-section {
   width: min(1200px, calc(100% - 32px));
   margin-inline: auto;
 }
@@ -253,8 +252,7 @@ button {
 .calendar-card,
 .sidebar,
 .schedule,
-.food-day,
-.sector-card {
+.food-day {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 253, 247, 0.96);
@@ -738,6 +736,36 @@ button.calendar-day {
   font-size: 0.94rem;
 }
 
+.mini-day-route {
+  padding: 12px;
+  border: 1px solid rgba(12, 118, 85, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.mini-day-route ul {
+  display: grid;
+  gap: 7px;
+  padding: 0;
+  margin: 8px 0 0;
+  list-style: none;
+}
+
+.mini-day-route li {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 8px;
+  align-items: start;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 760;
+}
+
+.mini-day-route time {
+  color: var(--green-dark);
+  font-weight: 950;
+}
+
 .schedule__head {
   padding: 18px;
   display: flex;
@@ -864,7 +892,6 @@ button.calendar-day {
 
 .plan-card h3,
 .food-card h3,
-.sector-card h3,
 .ai-card h3,
 .ai-brief h3 {
   margin: 0;
@@ -872,7 +899,6 @@ button.calendar-day {
 
 .plan-card p,
 .food-card p,
-.sector-card p,
 .ai-card p,
 .ai-brief p {
   margin: 8px 0 0;
@@ -992,8 +1018,7 @@ button.calendar-day {
   text-transform: uppercase;
 }
 
-.food-section,
-.sector-section {
+.food-section {
   margin-top: 56px;
 }
 
@@ -1072,74 +1097,6 @@ button.calendar-day {
   font-weight: 900;
 }
 
-.sector-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-bottom: 56px;
-}
-
-.sector-card {
-  min-height: 190px;
-  padding: 18px;
-}
-
-.sector-card > span {
-  color: var(--coral);
-  font-weight: 900;
-}
-
-.sector-card--focused {
-  min-height: 0;
-}
-
-.route-panel {
-  margin-top: 18px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfaf5;
-}
-
-.route-panel ul {
-  display: grid;
-  gap: 10px;
-  padding: 0;
-  margin: 12px 0 0;
-  list-style: none;
-}
-
-.route-panel li {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 12px;
-  align-items: start;
-  padding: 10px;
-  border-radius: 8px;
-  background: #fff;
-}
-
-.route-panel time {
-  color: var(--green-dark);
-  font-weight: 950;
-}
-
-.route-panel strong,
-.route-panel span {
-  display: block;
-}
-
-.route-panel span {
-  margin-top: 2px;
-  color: var(--muted);
-}
-
-.neighbor-days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
 
 .modal {
   width: min(680px, calc(100% - 28px));
@@ -1229,7 +1186,6 @@ button.calendar-day {
   .stats__inner,
   .calendar-grid,
   .food-board,
-  .sector-grid,
   .selected-food,
   .ai-grid,
   .day-summary {
