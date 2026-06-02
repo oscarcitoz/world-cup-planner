@@ -29,6 +29,76 @@
     ai: "IA"
   };
 
+  const dayMedia = {
+    "jun-22": {
+      src: "assets/places/biscayne-bay.jpg",
+      title: "Bienvenida a Miami",
+      credit: "Wikimedia Commons / P. Hughes",
+      source: "https://commons.wikimedia.org/wiki/File:Miami_-_City_Skyline_from_Biscayne_Bay_1.jpg"
+    },
+    "jun-23": {
+      src: "assets/places/miami-beach-lummus.jpg",
+      title: "South Beach y Lummus Park",
+      credit: "Florida State Archives / Wikimedia Commons",
+      source: "https://commons.wikimedia.org/wiki/File:Bird%27s_eye_view_of_Lummus_Park_by_the_beach_-_Miami_Beach,_Florida.jpg"
+    },
+    "jun-24": {
+      src: "assets/places/vizcaya.jpg",
+      title: "Vizcaya Museum and Gardens",
+      credit: "Averette / Wikimedia Commons",
+      source: "https://commons.wikimedia.org/wiki/File:Villa_Vizcaya_20110228.jpg"
+    },
+    "jun-25": {
+      src: "assets/places/wynwood.jpg",
+      title: "Wynwood",
+      credit: "osseous / Wikimedia Commons",
+      source: "https://commons.wikimedia.org/wiki/File:April_7,_2015_-_Wynwood_Miami_-_02.jpg"
+    },
+    "jun-26": {
+      src: "assets/places/biscayne-bay.jpg",
+      title: "Biscayne Bay",
+      credit: "Wikimedia Commons / P. Hughes",
+      source: "https://commons.wikimedia.org/wiki/File:Miami_-_City_Skyline_from_Biscayne_Bay_1.jpg"
+    },
+    "jun-27": {
+      src: "assets/places/hard-rock-stadium.jpg",
+      title: "Dia de partido",
+      credit: "Elbert Hampton / Wikimedia Commons",
+      source:
+        "https://commons.wikimedia.org/wiki/File:Cleveland_Browns_17-39_Miami_Dolphins_(Nov_13,_2022)_-_Hard_Rock_Stadium_-_file_33.jpg"
+    },
+    "jun-28": {
+      src: "assets/hero-world-cup-trip.png",
+      title: "Compras y Doral",
+      credit: "Imagen generada para el proyecto",
+      source: ""
+    },
+    "jun-29": {
+      src: "assets/hero-world-cup-trip.png",
+      title: "Road trip a Key West",
+      credit: "Imagen generada para el proyecto",
+      source: ""
+    },
+    "jun-30": {
+      src: "assets/hero-world-cup-trip.png",
+      title: "Outlets Sawgrass",
+      credit: "Imagen generada para el proyecto",
+      source: ""
+    },
+    "jul-01": {
+      src: "assets/places/biscayne-bay.jpg",
+      title: "Brickell y cierre",
+      credit: "Wikimedia Commons / P. Hughes",
+      source: "https://commons.wikimedia.org/wiki/File:Miami_-_City_Skyline_from_Biscayne_Bay_1.jpg"
+    },
+    "jul-02": {
+      src: "assets/places/biscayne-bay.jpg",
+      title: "Regreso desde Miami",
+      credit: "Wikimedia Commons / P. Hughes",
+      source: "https://commons.wikimedia.org/wiki/File:Miami_-_City_Skyline_from_Biscayne_Bay_1.jpg"
+    }
+  };
+
   const icon = {
     all: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>',
     arrival: '<svg viewBox="0 0 24 24"><path d="M4 16l16-5-16-5 3 5-3 5zM8 12h11"/></svg>',
@@ -370,6 +440,7 @@
   function renderDaySummary() {
     const day = selectedDay();
     const food = day.food[0];
+    const media = dayMedia[day.id];
     el.daySummary.innerHTML = `
       <div>
         <p class="kicker">${dateLabel(day.dateObj)}</p>
@@ -381,6 +452,17 @@
         </div>
       </div>
       <div class="day-facts">
+        <figure class="day-postcard">
+          <img src="${media.src}" alt="${media.title}" loading="lazy" />
+          <figcaption>
+            <strong>${media.title}</strong>
+            ${
+              media.source
+                ? `<a href="${media.source}" target="_blank" rel="noreferrer">${media.credit}</a>`
+                : `<span>${media.credit}</span>`
+            }
+          </figcaption>
+        </figure>
         <span><strong>${day.sector}</strong>Sector</span>
         <span><strong>${day.tempo}</strong>Ritmo</span>
         <span><strong>${food ? food.recommendation.split(".")[0] : "Por definir"}</strong>Comida sugerida</span>
